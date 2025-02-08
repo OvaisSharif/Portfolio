@@ -19,8 +19,8 @@ export default {
         Ovo: ["Ovo","serif"]
       },
       boxShadow: {
-        'black':'4px 4px 0 #000',
-        'white':'4px 4px 0 #fff',
+       'black': 'rgba(33, 35, 38, 0.1) 0px 10px 10px -10px',
+        'white':'rgba(33, 35, 38, 0.1) 0px 10px 10px -10px',
       },
       gridTemplateColumns: {
         'auto':'repeat(auto-fit, minmax(200px,1fr))'

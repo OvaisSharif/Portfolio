@@ -38,6 +38,21 @@ import right_arrow_bold_dark from './right-arrow-bold-dark.png';
 import linkedin_icon from './linkedin_icon.png';
 import twitter_icon from './twitter_icon.png';
 import github_icon from './github_icon.png'
+import github_icon_dark from './github_icon_dark.png'
+import home_logo from './home_logo.png';
+import react_logo from './react-logo.svg'
+import redux_logo from './redux-logo.svg'
+import next_logo from './next-logo.svg'
+import javascript_logo from './javascript-logo.svg'
+import sass_logo from './scss-logo.svg'
+import bootstrap_logo from './bootstrap-logo.svg'
+import tailwind_logo from './tailwind-logo.svg'
+import css_logo from './css-logo.svg'
+import html_logo from './html-logo.svg'
+import git_logo from './git-logo.svg'
+import typescript_logo from './typescript-logo.svg'
+import accessibility_logo from './accessibility-logo.svg'
+
 
 export const assets = {
     user_image,
@@ -79,8 +94,38 @@ export const assets = {
     right_arrow_bold_dark,
     linkedin_icon,
     twitter_icon,
-    github_icon
+    github_icon,
+    github_icon_dark,
+    home_logo,
+    react_logo,
+    redux_logo,
+    next_logo,
+    javascript_logo,
+    sass_logo,
+    bootstrap_logo,
+    tailwind_logo,
+    css_logo,
+    html_logo,
+    git_logo,
+    typescript_logo,
+    accessibility_logo
 };
+
+export const skillName = [
+    { name: 'React',imgSrc: assets.react_logo},
+    { name: 'Redux',imgSrc: assets.redux_logo},
+    { name: 'Next.Js',imgSrc: assets.next_logo},
+    { name: 'Javascript',imgSrc: assets.javascript_logo},
+    { name: 'Sass',imgSrc: assets.sass_logo},
+    { name: 'Bootsrap',imgSrc: assets.bootstrap_logo}, 
+    { name: 'Tailwind',imgSrc: assets.tailwind_logo},    
+    { name: 'CSS',imgSrc: assets.css_logo},  
+    { name: 'HTML',imgSrc: assets.html_logo},    
+    { name: 'GIT',imgSrc: assets.git_logo},   
+    { name: 'Typescript',imgSrc: assets.typescript_logo},  
+    { name: 'Accessibility',imgSrc: assets.accessibility_logo},  
+
+  ];
 
 export const workData = [
     {
@@ -106,10 +151,10 @@ export const workData = [
 ]
 
 export const serviceData = [
-    { icon: assets.web_icon, title: 'Web design', description: 'Web development is the process of building, programming...', link: '' },
-    { icon: assets.mobile_icon, title: 'Mobile app', description: 'Mobile app development involves creating software for mobile devices...', link: '' },
-    { icon: assets.ui_icon, title: 'UI/UX design', description: 'UI/UX design focuses on creating a seamless user experience...', link: '' },
-    { icon: assets.graphics_icon, title: 'Graphics design', description: 'Creative design solutions to enhance visual communication...', link: '' },
+    { company: 'Gray Matrix Solutions | Frontend Engineer', title: 'Talkk.ai ( Conversational AI Webapp )', description:'A Conversational AI web application that enhances user interaction through natural language processing.', techstack: 'React, Redux, JavaScript, Sass, Bootstrap, Talkk CMS.' },
+    { company: 'Gray Matrix Solutions | Frontend Engineer', title: 'RMA QMS ( Mortgage Webapp )', description:'A mortgage web application designed to streamline the quality management system for the mortgage industry.', techstack: 'React, Context API, JavaScript, Sass, Bootstrap, HTML.' },
+    { company: 'Gray Matrix Solutions | Frontend Engineer', title: 'Insyghts ( Human Resource System Webapp )', description:'A human resource system web application that simplifies employee management, recruitment, and analytics.', techstack: 'React, JavaScript, CSS, Context API.' },
+    { company: 'MAK { Byte } | Frontend Engineer', title: 'School Management System', description:'A web application built to manage school operations, including student records, grades, and schedules.', techstack: 'React, JavaScript, Sass, Bootstrap, HTML.' },
 ]
 
 export const infoList = [
