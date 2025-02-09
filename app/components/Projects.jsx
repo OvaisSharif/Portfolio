@@ -31,7 +31,7 @@ const Projects = () => {
               <motion.div 
               whileHover={{scale:1}}
               key={index} className='border border-gray-400 rounded-lg p-4 md:p-8 md:flex flex-col justify-between hover:shadow-black
-              cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 dark:hover:bg-darkHover
+              cursor-pointer hover:sm:bg-lightHover hover:-translate-y-1 duration-500 dark:hover:bg-darkHover
               dark:hover:shadow-white'>
                 <div>
                 <p className='text-xs text-gray-600 leading-5 dark:text-white/80'>{company}</p>
