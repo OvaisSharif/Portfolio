@@ -11,8 +11,8 @@ const ovo = Ovo({
 
 
 export const metadata = {
-  title: "Ovais Sharif Portfolio",
-  description: "",
+  title: "Ovais Sharif — Frontend Engineer",
+  description: "Ovais Sharif is a frontend engineer building thoughtful, high-performance digital products with React and Next.js.",
 };
 
 export default function RootLayout({ children }) {
