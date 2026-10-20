@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { motion } from 'motion/react'
+import { motion, useScroll, useSpring, useTransform } from 'motion/react'
 
 const projects = [
   { number: '01', title: 'Talkk.AI', type: 'AI conversation platform', description: 'Modular conversation flows and real-time interactions designed to make complex AI feel effortless.', image: '/work-1.png', tags: ['Next.js', 'Node.js', 'Sass', 'TalkkCMS'] },
@@ -16,9 +16,13 @@ const reveal = { hidden: { opacity: 0, y: 36 }, visible: { opacity: 1, y: 0, tra
 export default function ModernPortfolio() {
   const [menuOpen, setMenuOpen] = useState(false)
   const closeMenu = () => setMenuOpen(false)
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 90, damping: 24, restDelta: 0.001 })
+  const progressScale = useTransform(progress, [0, 1], [0, 1])
 
   return (
     <main id="top" className="portfolio-shell">
+      <motion.div className="scroll-progress" style={{ scaleX: progressScale }} aria-hidden="true" />
       <nav className="site-nav" aria-label="Main navigation">
         <a href="#top" className="wordmark" onClick={closeMenu}><span>OS</span><strong>Ovais Sharif</strong></a>
         <div className="nav-status"><i /> Open to select work</div>
