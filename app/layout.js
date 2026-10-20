@@ -1,12 +1,22 @@
-import { Outfit, Ovo } from "next/font/google";
+import { DM_Sans, Fraunces, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const outfit = Outfit({
-  subsets: ["latin"], weight: ["400","500","600","700"]
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
 });
 
-const ovo = Ovo({
-  subsets: ["latin"], weight: ["400"]
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const jetBrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 
@@ -17,11 +27,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth ">
-      <body
-        className={`${outfit.className} ${ovo.className} antialiased leading-8 overflow-x-hidden
-        dark:bg-darkTheme dark:text-white`}
-      >
+    <html lang="en" className={`${dmSans.variable} ${fraunces.variable} ${jetBrainsMono.variable} scroll-smooth`}>
+      <body className="antialiased leading-8 overflow-x-hidden">
         {children}
       </body>
     </html>
