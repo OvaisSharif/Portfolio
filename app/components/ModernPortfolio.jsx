@@ -108,7 +108,7 @@ export default function ModernPortfolio() {
           <strong>Ovais Sharif</strong>
         </a>
         <div className="nav-status">
-          <i /> Open to select work
+          <i /> Open to work
         </div>
         <button
           className="menu-button"
@@ -131,7 +131,11 @@ export default function ModernPortfolio() {
           <a href="#contact" onClick={closeMenu}>
             Contact
           </a>
-          <a className="nav-resume" href="/Ovais_CV_Dubai.pdf" download>
+          <a
+            className="nav-resume"
+            href="/Ovais_Sharif_CV_Full_Stack_Dev.pdf"
+            download
+          >
             Download CV <span>↗</span>
           </a>
         </div>
