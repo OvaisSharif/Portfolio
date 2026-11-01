@@ -19,15 +19,18 @@ const jetBrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
-
 export const metadata = {
   title: "Ovais Sharif — Frontend Engineer",
-  description: "Ovais Sharif is a frontend engineer building thoughtful, high-performance digital products with React and Next.js.",
+  description:
+    "Ovais Sharif is a frontend engineer building thoughtful, high-performance digital products with React and Next.js.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${fraunces.variable} ${jetBrainsMono.variable} scroll-smooth`}>
+    <html
+      lang="en"
+      className={`${dmSans.variable} ${fraunces.variable} ${jetBrainsMono.variable} scroll-smooth`}
+    >
       <body className="antialiased leading-8 overflow-x-hidden">
         {children}
       </body>
