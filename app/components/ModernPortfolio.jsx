@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import {
   motion,
+  AnimatePresence,
   useScroll,
   useSpring,
   useTransform,
@@ -15,11 +16,11 @@ const projects = [
   {
     number: "01",
     title: "Talkk.AI",
-    type: "AI Conversation Platform",
+    type: "Conversation AI WebApp",
     badge: "Enterprise AI",
     year: "2024",
     description:
-      "Modular conversation flows and real-time interactions designed to make complex AI feel effortless.",
+      "Developed an interactive AI-powered chatbot platform that enables users to engage in seamless, real-time conversations. Built responsive and reusable UI components to deliver dynamic chat experiences and improve overall user engagement.",
     image: "/work-1.png",
     tags: ["Next.js", "Node.js", "Sass", "TalkkCMS"],
     highlights: [
@@ -31,11 +32,11 @@ const projects = [
   {
     number: "02",
     title: "RMA QMS",
-    type: "B2B Mortgage Platform",
+    type: "Mortgage WebApp",
     badge: "Fintech Workflow",
     year: "2023",
     description:
-      "A pixel-accurate workflow system translated from Figma into a fast, responsive React product.",
+      "Developed a responsive mortgage management web application with intuitive interfaces and reusable React components. Integrated REST APIs and Redux for efficient data handling, ensuring smooth navigation and a consistent user experience.",
     image: "/work-2.png",
     tags: ["React", "Redux", "Bootstrap", "REST APIs"],
     highlights: [
@@ -51,7 +52,7 @@ const projects = [
     badge: "EdTech Infrastructure",
     year: "2022",
     description:
-      "Role-focused workflows for student records, attendance, and performance tracking.",
+      "Built a comprehensive school management platform to simplify student information, attendance tracking, and academic performance management. Developed reusable React components and responsive dashboards to streamline workflows for teachers and administrators.",
     image: "/work-3.png",
     tags: ["React", "Bootstrap", "CSS", "Node.js"],
     highlights: [
@@ -107,38 +108,51 @@ const skillGroups = [
   },
 ];
 
+// --- Experience Timeline with Date Ranges & 2-3 Bullet Points ---
 const careerTimeline = [
   {
-    role: "Full Stack / Frontend Developer",
+    role: "Software Engineer - Level 2",
     company: "Jazal Engineering & Contracting",
-    period: "Recent",
+    period: "Mar 2026 - Sep 2026",
     location: "Abu Dhabi, UAE",
-    detail:
-      "Engineered enterprise web interfaces, resolved cross-browser and mobile friction points on production pages, and architected a high-speed Python FastAPI search service integrated with the React frontend.",
+    bullets: [
+      "Developed and maintained responsive frontend interfaces for the companys web platforms, focusing on usability, responsive design, and consistent user experience.",
+      "Improved existing frontend interfaces by refining layouts, styling, responsiveness, and cross-browser compatibility.",
+      "Maintained and enhanced existing web applications while ensuring reliable functionality across desktop and mobile devices.",
+    ],
   },
   {
-    role: "Frontend Engineer",
+    role: "Software Engineer",
     company: "Seed Global Education",
-    period: "Past",
+    period: "Feb 2025 - Jan 2026",
     location: "Global / Remote",
-    detail:
-      "Built conversion-centric web properties and interactive candidate assessment workflows.",
+    bullets: [
+      "Implemented dynamic, user-friendly interfaces for study-abroad search and application management, improving student navigation and onboarding experience by 30%.",
+      "Led frontend integration of AI-powered features and live search APIs, enabling real-time information retrieval on universities, courses, and scholarships, reducing research time by 80%.",
+      "Built reusable, accessible, mobile-first UI components, optimized for cross-browser compatibility and high-performance rendering.",
+    ],
   },
   {
-    role: "Software Developer",
+    role: "Associate Software Engineer",
     company: "Gray Matrix Solutions",
-    period: "Past",
-    location: "Mumbai",
-    detail:
-      "Delivered responsive client portals and translated complex design tokens into production React code.",
+    period: "Feb 2023 - Dec 2024",
+    location: "Mumbai, India",
+    bullets: [
+      "Developed and maintained responsive, scalable web applications using React.js, Next.js, JavaScript, Redux, Sass, and Bootstrap, following reusable component and modern frontend development practices.",
+      "Translated Figma/UI designs into responsive, pixel-perfect interfaces, while focusing on performance optimization, cross-browser compatibility, accessibility, and consistent user experiences.",
+      "Collaborated with backend, AI, and cross-functional teams to integrate RESTful APIs, manage application data and state, troubleshoot frontend issues, and deliver reliable production-ready web solutions.",
+    ],
   },
   {
     role: "Frontend Developer",
     company: "Mak Byte",
-    period: "Foundation",
+    period: "Jul 2022 - Jan 2023",
     location: "India",
-    detail:
-      "Crafted accessible web components, modular CSS architectures, and interactive client dashboards.",
+    bullets: [
+      "Developed and maintained responsive web applications using React.js, JavaScript, Bootstrap, CSS, and RESTful APIs, following reusable and maintainable frontend development practices.",
+      "Built reusable React components and interactive user interfaces, with a focus on responsive design, usability, performance, and consistent user experiences across devices.",
+      "Collaborated with clients, administrators, and cross-functional teams to understand requirements, improve application workflows, integrate backend APIs, and deliver reliable frontend solutions.",
+    ],
   },
 ];
 
@@ -191,7 +205,7 @@ function ProjectCard({ project, index }) {
       <div className="absolute inset-0 -z-10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent pointer-events-none" />
 
       {/* Top Browser Bar / Metadata */}
-      <div className="flex items-center justify-between pb-6 mb-6 border-b border-white/10 text-xs font-mono text-zinc-400">
+      {/* <div className="flex items-center justify-between pb-6 mb-6 border-b border-white/10 text-xs font-mono text-zinc-400">
         <div className="flex items-center gap-2">
           <div className="flex gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-rose-500/70" />
@@ -202,14 +216,7 @@ function ProjectCard({ project, index }) {
             {project.badge}
           </span>
         </div>
-        <div className="flex items-center gap-3">
-          <span>{project.year}</span>
-          <span className="text-zinc-600">/</span>
-          <span className="text-emerald-400 font-semibold">
-            {project.number}
-          </span>
-        </div>
-      </div>
+      </div> */}
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         {/* Project Description & Details */}
@@ -226,23 +233,6 @@ function ProjectCard({ project, index }) {
           <p className="text-zinc-300 text-sm leading-relaxed">
             {project.description}
           </p>
-
-          <div className="space-y-2 pt-2 border-t border-white/5">
-            <p className="text-xs font-mono text-zinc-500 uppercase tracking-wider">
-              Engineering Focus
-            </p>
-            <ul className="space-y-1.5">
-              {project.highlights.map((h) => (
-                <li
-                  key={h}
-                  className="text-xs text-zinc-400 flex items-center gap-2"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/80" />
-                  {h}
-                </li>
-              ))}
-            </ul>
-          </div>
 
           <div className="flex flex-wrap gap-1.5 pt-3">
             {project.tags.map((tag) => (
@@ -266,10 +256,6 @@ function ProjectCard({ project, index }) {
               className="object-cover object-top filter brightness-95 group-hover:brightness-105 group-hover:scale-[1.03] transition-all duration-700 ease-out"
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
-            <div className="absolute bottom-3 right-3 px-3 py-1 rounded-lg bg-black/60 backdrop-blur-md border border-white/10 text-[11px] font-mono text-zinc-300 flex items-center gap-1.5">
-              <span>Inspect Architecture</span>
-              <span className="text-emerald-400">↗</span>
-            </div>
           </div>
         </div>
       </div>
@@ -305,7 +291,6 @@ function ParticlesBackground() {
     resize();
     window.addEventListener("resize", resize);
 
-    // 80 Floating Star Particles spread across full width
     const numParticles = 80;
     const particles = Array.from({ length: numParticles }, () => ({
       x: Math.random() * (width || window.innerWidth || 1200),
@@ -316,7 +301,7 @@ function ParticlesBackground() {
         (Math.random() * 0.012 + 0.006) * (Math.random() > 0.5 ? 1 : -1),
       vx: (Math.random() - 0.5) * 0.35,
       vy: (Math.random() - 0.5) * 0.35,
-      color: Math.random() > 0.4 ? "16, 185, 129" : "220, 230, 245", // Emerald & Bright Starlight
+      color: Math.random() > 0.4 ? "16, 185, 129" : "220, 230, 245",
     }));
 
     let mouse = { x: -1000, y: -1000 };
@@ -334,19 +319,16 @@ function ParticlesBackground() {
         p.x += p.vx;
         p.y += p.vy;
 
-        // Wrap around canvas boundaries
         if (p.x < 0) p.x = width;
         if (p.x > width) p.x = 0;
         if (p.y < 0) p.y = height;
         if (p.y > height) p.y = 0;
 
-        // Oscillate opacity (Fade In / Fade Out effect)
         p.alpha += p.alphaSpeed;
         if (p.alpha <= 0.1 || p.alpha >= 0.85) {
           p.alphaSpeed = -p.alphaSpeed;
         }
 
-        // Interactive mouse proximity illumination
         const dx = mouse.x - p.x;
         const dy = mouse.y - p.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -389,20 +371,26 @@ export default function ModernPortfolio() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Experience accordion state
+  const [expandedExp, setExpandedExp] = useState(null);
+
   // Motion Scroll Progress
-  const { scrollY, scrollYProgress } = useScroll();
+  const { scrollYProgress } = useScroll();
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
   });
 
-  // Reliable scroll listener via Motion: activates blur after 60px
+  // Solid, flicker-free passive scroll listener
   useEffect(() => {
-    return scrollY.on("change", (latest) => {
-      setIsScrolled(latest > 60);
-    });
-  }, [scrollY]);
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   // Live Dubai Time Clock (UTC+4)
   useEffect(() => {
@@ -424,76 +412,75 @@ export default function ModernPortfolio() {
 
   return (
     <main className="relative min-h-screen bg-[#070709] text-zinc-100 bg-noise selection:bg-emerald-500/30 selection:text-emerald-200">
-      {/* Scroll indicator bar across the top */}
+      {/* Scroll indicator bar across the very top (Top-most z-index) */}
       <motion.div
         style={{ scaleX: smoothProgress }}
-        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 origin-left z-[100] shadow-[0_0_15px_rgba(16,185,129,1)] pointer-events-none"
+        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-500 origin-left z-[1000] shadow-[0_0_15px_rgba(16,185,129,1)] pointer-events-none"
       />
 
       {/* Ambient Radial Mesh Lights */}
       <div className="fixed inset-0 pointer-events-none -z-10 bg-mesh-radial" />
       <div className="fixed inset-0 pointer-events-none -z-10 bg-grid-pattern opacity-40" />
 
-      {/* --- HUD / Dynamic Island Navigation Bar --- */}
+      {/* --- HUD / Navigation Bar (Always on top with z-[999], completely immune to 3D card layering) --- */}
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+        className={`fixed inset-x-0 top-0 z-[999] transition-all duration-300 ${
           isScrolled
-            ? "backdrop-blur bg-zinc-950/75 border-b border-zinc-800 py-3.5 shadow-2xl"
-            : "bg-transparent border-b border-transparent py-6"
+            ? "backdrop-blur border-b border-white/10 py-3.5 shadow-3xl shadow-black/80"
+            : "bg-transparent border-b border-transparent py-5 md:py-6"
         }`}
-        style={{
-          WebkitBackdropFilter: isScrolled ? "blur(30px)" : "none",
-        }}
       >
-        <nav className="max-w-6xl mx-auto px-4 md:px-8 flex items-center justify-between">
+        <nav className="w-full max-w-6xl mx-auto px-4 md:px-8 flex items-center justify-between gap-4">
           {/* Logo & Identity */}
           <a
             href="#top"
-            className="flex items-center gap-3 group text-sm font-semibold tracking-tight text-white hover:text-emerald-400 transition-colors"
+            className="flex items-center gap-3 group text-sm font-semibold tracking-tight text-white hover:text-emerald-400 transition-colors shrink-0"
           >
-            <span className="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-mono text-xs text-emerald-400 group-hover:scale-105 group-hover:bg-emerald-500/20 transition-transform">
+            <span className="w-8 h-8 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-mono text-xs text-emerald-400 group-hover:scale-105 group-hover:bg-emerald-500/20 transition-transform shrink-0">
               OS
             </span>
             <div className="flex flex-col">
-              <span className="leading-tight">Ovais Sharif</span>
-              <span className="text-[10px] text-zinc-400 font-mono hidden sm:inline">
-                Frontend &amp; Full Stack
+              <span className="leading-tight font-medium text-white group-hover:text-emerald-300 transition-colors whitespace-nowrap">
+                Ovais Sharif
+              </span>
+              <span className="text-[10px] text-zinc-400 font-mono hidden sm:inline whitespace-nowrap">
+                Software Engineer
               </span>
             </div>
           </a>
 
           {/* Center Links (Desktop) */}
-          <div className="hidden md:flex items-center gap-1 bg-white/[0.03] rounded-full p-1 border border-white/5 text-sm font-medium text-zinc-300">
+          <div className="hidden md:flex items-center gap-1 bg-white/[0.04] backdrop-blur-sm rounded-full p-1 border border-white/10 text-sm font-medium text-zinc-300 shrink-0">
             <a
               href="#about"
-              className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all"
+              className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all whitespace-nowrap"
             >
-              About
+              Experience
             </a>
             <a
               href="#work"
-              className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all"
+              className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all whitespace-nowrap"
             >
               Selected Work
             </a>
             <a
               href="#skills"
-              className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all"
+              className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all whitespace-nowrap"
             >
               Stack
             </a>
             <a
               href="#contact"
-              className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all"
+              className="px-3.5 py-1.5 rounded-full hover:text-white hover:bg-white/10 transition-all whitespace-nowrap"
             >
               Contact
             </a>
           </div>
 
           {/* Right Status Pill & CTA */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
             {/* Live Dubai Time Indicator */}
-            <div className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/25 text-[11px] font-mono text-emerald-300">
+            <div className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/50 border border-emerald-500/30 text-[11px] font-mono text-emerald-300 shrink-0 whitespace-nowrap">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -501,20 +488,37 @@ export default function ModernPortfolio() {
               <span>DXB {dubaiTime || "12:00 PM"}</span>
             </div>
 
-            {/* Resume Action */}
+            {/* Enhanced Glow Download CV Button (Desktop) */}
             <a
               href="/Ovais_Sharif_CV_Full_Stack_Dev.pdf"
               download
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white text-zinc-950 font-medium text-xs hover:bg-zinc-200 hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all"
+              className="group relative hidden sm:inline-flex items-center gap-2 px-4 py-3 rounded-full text-xs font-semibold text-zinc-950 overflow-hidden transition-all duration-300 hover:scale-[1.03] active:scale-[0.97] shadow-[0_0_20px_rgba(16,185,129,0.35)] hover:shadow-[0_0_30px_rgba(16,185,129,0.65)] shrink-0 whitespace-nowrap"
             >
-              <span>Download CV</span>
-              <span className="text-[13px]">↗</span>
+              <span className="absolute inset-0 bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 bg-[length:200%_auto] transition-all duration-500 group-hover:bg-right" />
+              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12 pointer-events-none" />
+
+              <span className="relative z-10 flex items-center gap-1.5 tracking-tight">
+                <span>Download CV</span>
+                <svg
+                  className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.4}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
+              </span>
             </a>
 
-            {/* Mobile Menu Toggle Button */}
+            {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 text-zinc-300 hover:text-white focus:outline-none"
+              className="md:hidden p-2 text-zinc-300 hover:text-white focus:outline-none rounded-lg hover:bg-white/5 transition-colors"
               aria-label="Toggle navigation menu"
             >
               <svg
@@ -549,14 +553,14 @@ export default function ModernPortfolio() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="md:hidden mt-2 mx-4 p-5 glass-panel rounded-2xl flex flex-col gap-4 text-sm font-medium border border-zinc-800 bg-zinc-900/90 backdrop-blur"
+            className="md:hidden mt-2 mx-4 p-5 glass-panel rounded-2xl flex flex-col gap-4 text-sm font-medium border border-zinc-800 bg-[#070709]/95 backdrop-blur-xl shadow-2xl"
           >
             <a
               href="#about"
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-emerald-400 py-1"
             >
-              About &amp; Overview
+              Experience
             </a>
             <a
               href="#work"
@@ -583,45 +587,42 @@ export default function ModernPortfolio() {
               <span className="text-xs font-mono text-zinc-400">
                 DXB {dubaiTime}
               </span>
+
               <a
                 href="/Ovais_Sharif_CV_Full_Stack_Dev.pdf"
                 download
-                className="px-4 py-2 bg-emerald-500 text-zinc-950 rounded-xl text-xs font-semibold"
+                className="group relative inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-zinc-950 overflow-hidden bg-gradient-to-r from-emerald-400 via-teal-300 to-emerald-400 shadow-[0_0_18px_rgba(16,185,129,0.35)] active:scale-95 transition-all"
               >
-                Download CV
+                <span>Download CV</span>
+                <svg
+                  className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.4}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                  />
+                </svg>
               </a>
             </div>
           </motion.div>
         )}
       </header>
 
-      {/* --- HERO SECTION: FULL-WIDTH VIEWPORT PARTICLES (NO BEAM LINES) --- */}
+      {/* --- HERO SECTION --- */}
       <section
         id="top"
         className="relative w-full pt-36 md:pt-48 pb-20 md:pb-28 overflow-hidden z-0"
       >
-        {/* 🌟 1. Interactive Fade In / Fade Out Canvas Dots (Spans 100% Full Width) */}
         <ParticlesBackground />
 
-        {/* 🌟 2. Ambient Aurora Glow Behind Text */}
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-emerald-500/25 via-teal-400/20 to-transparent blur-[120px] pointer-events-none rounded-full z-0" />
 
-        {/* 🌟 3. Foreground Content (Centered in max-w-5xl, Layered above Canvas) */}
         <div className="max-w-5xl mx-auto px-4 md:px-8 text-center relative z-10 flex flex-col items-center space-y-7">
-          {/* Availability Beacon */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="flex items-center justify-center"
-          >
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-xs font-mono text-emerald-300 backdrop-blur-md shadow-[0_0_15px_rgba(16,185,129,0.2)]">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Available for work</span>
-            </div>
-          </motion.div>
-
-          {/* Name & Editorial Subtitle (Beam lines removed) */}
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
@@ -632,11 +633,10 @@ export default function ModernPortfolio() {
               Ovais Sharif
             </h1>
             <p className="text-xl sm:text-2xl md:text-3xl font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-teal-200 to-zinc-200">
-              Frontend &amp; Full-Stack Engineer
+              Software Engineer
             </p>
           </motion.div>
 
-          {/* High-Signal Craft Statement */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -645,8 +645,8 @@ export default function ModernPortfolio() {
           >
             <p className="text-base sm:text-lg text-zinc-300 font-normal leading-relaxed text-center">
               Engineering high-performance web applications with a focus on
-              interface craft, scalable architecture, and resilient API
-              integration.
+              interface craft, resilient API architecture, and agentic AI-driven
+              velocity.
             </p>
           </motion.div>
 
@@ -659,33 +659,30 @@ export default function ModernPortfolio() {
           >
             <div className="rounded-2xl glass-panel border border-white/10 p-6 shadow-2xl backdrop-blur-xl">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-                {/* Core Stack */}
                 <div className="space-y-1.5 md:border-r md:border-white/5 md:pr-4">
                   <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">
                     Frontend Architecture
                   </span>
-                  <p className="text-sm font-medium text-emerald-300">
+                  <p className="text-md font-medium text-emerald-300">
                     React.js · Next.js · TypeScript
                   </p>
                 </div>
 
-                {/* Backend Edge */}
                 <div className="space-y-1.5 md:border-r md:border-white/5 md:pr-4">
                   <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">
                     Backend &amp; Microservices
                   </span>
-                  <p className="text-sm font-medium text-teal-300">
+                  <p className="text-md font-medium text-teal-300">
                     Python FastAPI · REST APIs
                   </p>
                 </div>
 
-                {/* Experience & Location */}
                 <div className="space-y-1.5">
                   <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-500">
-                    Production Track Record
+                    Experience
                   </span>
-                  <p className="text-sm font-medium text-zinc-200">
-                    4+ Years · UAE (Dubai &amp; Abu Dhabi)
+                  <p className="text-md font-medium text-zinc-200">
+                    4+ Years · UAE
                   </p>
                 </div>
               </div>
@@ -694,104 +691,127 @@ export default function ModernPortfolio() {
         </div>
       </section>
 
-      {/* --- ABOUT & EXPERIENCE MATRIX --- */}
+      {/* --- EXPERIENCE SECTION (Sandboxed with 'relative isolate') --- */}
       <section
         id="about"
-        className="py-20 md:py-28 px-4 md:px-8 max-w-6xl mx-auto border-t border-white/5"
+        className="relative isolate py-20 md:py-28 px-4 md:px-8 max-w-6xl mx-auto border-t border-white/5"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5 space-y-4">
+        <div className="space-y-10">
+          <div className="space-y-2">
             <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-emerald-400">
               <span>01</span>
               <span>//</span>
-              <span>About &amp; Experience</span>
+              <span>Career History</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
-              Turning complex product requirements into clear, scalable web
-              experiences.
+            <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-white">
+              Work Experience
             </h2>
-            <p className="text-sm font-mono text-zinc-400">
-              A developer who ships with intention.
-            </p>
-
-            <div className="grid grid-cols-3 gap-3 pt-6">
-              <div className="glass-panel p-4 rounded-2xl border border-white/10 text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white font-mono">
-                  4<span className="text-emerald-400">+</span>
-                </div>
-                <div className="text-[11px] font-mono text-zinc-400 mt-1">
-                  Years Building
-                </div>
-              </div>
-              <div className="glass-panel p-4 rounded-2xl border border-white/10 text-center">
-                <div className="text-3xl md:text-4xl font-bold text-white font-mono">
-                  15<span className="text-emerald-400">+</span>
-                </div>
-                <div className="text-[11px] font-mono text-zinc-400 mt-1">
-                  Shipped Apps
-                </div>
-              </div>
-              <div className="glass-panel p-4 rounded-2xl border border-white/10 text-center">
-                <div className="text-3xl md:text-4xl font-bold text-emerald-400 font-mono">
-                  ∞
-                </div>
-                <div className="text-[11px] font-mono text-zinc-400 mt-1">
-                  Curiosity
-                </div>
-              </div>
-            </div>
           </div>
 
-          <div className="lg:col-span-7 space-y-6">
-            <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-white/10 space-y-4">
-              <h3 className="text-lg font-semibold text-white">
-                Engineering Philosophy
-              </h3>
-              <p className="text-zinc-300 leading-relaxed text-sm sm:text-base">
-                With 4+ years across <strong>Jazal Engineering</strong>,{" "}
-                <strong>Seed Global Education</strong>,{" "}
-                <strong>Gray Matrix Solutions</strong>, and{" "}
-                <strong>Mak Byte</strong>, I build interfaces that are
-                accessible, performant, and ready for real users. I partner with
-                product, backend, AI, and design teams to move from Figma and
-                API contracts to dependable production software.
-              </p>
-            </div>
-
-            <div className="space-y-3">
-              <p className="text-xs font-mono uppercase tracking-widest text-zinc-400 px-1">
-                Career History
-              </p>
-              {careerTimeline.map((item, idx) => (
+          {/* Experience Accordion Dropdown Cards */}
+          <div className="space-y-3.5 pt-2">
+            {careerTimeline.map((item, idx) => {
+              const isOpen = expandedExp === idx;
+              return (
                 <div
                   key={idx}
-                  className="glass-card-interactive p-5 rounded-2xl border border-white/5 space-y-2"
+                  onClick={() => setExpandedExp(isOpen ? null : idx)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setExpandedExp(isOpen ? null : idx);
+                    }
+                  }}
+                  className={`group p-5 sm:p-6 rounded-2xl border transition-all duration-300 ease-out cursor-pointer text-left select-none hover:-translate-y-1 hover:scale-[1.01] hover:border-emerald-400/40 hover:bg-emerald-500/[0.04] hover:shadow-xl hover:shadow-emerald-500/10 hover:ring-1 hover:ring-emerald-400/20 ${
+                    isOpen
+                      ? "glass-panel border-emerald-500/40 bg-white/[0.04] shadow-lg shadow-emerald-950/20"
+                      : "glass-card-interactive border-white/5 bg-white/[0.015]"
+                  }`}
                 >
-                  <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-                    <span className="font-semibold text-emerald-300">
-                      {item.company}
-                    </span>
-                    <span className="text-zinc-500">
-                      {item.location} · {item.period}
-                    </span>
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="space-y-1">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="text-base sm:text-lg font-semibold text-white">
+                          {item.role}
+                        </h3>
+                        <span className="text-xs text-zinc-500 hidden sm:inline">
+                          •
+                        </span>
+                        <span className="text-base font-mono font-semibold text-emerald-400">
+                          {item.company}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-3 shrink-0">
+                      <span className="text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-zinc-300">
+                        {item.period}
+                      </span>
+                      <motion.div
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.25 }}
+                        className={`text-sm ${
+                          isOpen ? "text-emerald-400" : "text-zinc-400"
+                        }`}
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </motion.div>
+                    </div>
                   </div>
-                  <h4 className="text-sm font-semibold text-white">
-                    {item.role}
-                  </h4>
-                  <p className="text-xs text-zinc-400 leading-relaxed">
-                    {item.detail}
-                  </p>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{
+                          duration: 0.35,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-4 mt-4 border-t border-white/10">
+                          <ul className="space-y-2.5">
+                            {item.bullets.map((bullet, bIdx) => (
+                              <li
+                                key={bIdx}
+                                className="text-xs sm:text-sm text-zinc-300 flex items-start gap-2.5 leading-relaxed"
+                              >
+                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-2 shrink-0" />
+                                <span>{bullet}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
-              ))}
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* --- SELECTED WORK EXHIBITION --- */}
+      {/* --- SELECTED WORK EXHIBITION (Sandboxed with 'relative isolate' to contain 3D perspective cards) --- */}
       <section
         id="work"
-        className="py-20 md:py-28 px-4 md:px-8 max-w-6xl mx-auto border-t border-white/5"
+        className="relative isolate py-20 md:py-28 px-4 md:px-8 max-w-6xl mx-auto border-t border-white/5"
       >
         <div className="space-y-12">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
@@ -808,10 +828,6 @@ export default function ModernPortfolio() {
                 </span>
               </h2>
             </div>
-            <p className="text-sm text-zinc-400 max-w-md font-mono">
-              From conversational AI to operational dashboards, I make complex
-              workflows feel simple, fast, and dependable.
-            </p>
           </div>
 
           <div className="space-y-8">
@@ -826,10 +842,10 @@ export default function ModernPortfolio() {
         </div>
       </section>
 
-      {/* --- TECHNICAL CAPABILITIES & ARCHITECTURE BENTO GRID --- */}
+      {/* --- TECHNICAL CAPABILITIES & ARCHITECTURE BENTO GRID (Sandboxed with 'relative isolate') --- */}
       <section
         id="skills"
-        className="py-20 md:py-28 px-4 md:px-8 max-w-6xl mx-auto border-t border-white/5"
+        className="relative isolate py-20 md:py-28 px-4 md:px-8 max-w-6xl mx-auto border-t border-white/5"
       >
         <div className="space-y-12">
           <div className="space-y-3">
@@ -890,7 +906,7 @@ export default function ModernPortfolio() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
               <div className="md:col-span-8 space-y-3">
                 <span className="text-xs font-mono uppercase tracking-widest text-emerald-400">
-                  Full-Stack Specialization · Jazal Engineering Case Study
+                  Full-Stack Specialization
                 </span>
                 <h3 className="text-2xl font-bold text-white">
                   Python FastAPI Search Engine &amp; Reactive UI Bridge
@@ -916,16 +932,16 @@ export default function ModernPortfolio() {
       </section>
 
       {/* --- KINETIC MARQUEE SECTION --- */}
-      <div className="py-10 overflow-hidden border-y border-white/5 bg-white/[0.01]">
+      <div className="relative isolate py-10 overflow-hidden border-y border-white/5 bg-white/[0.01]">
         <div className="animate-marquee whitespace-nowrap flex items-center gap-12 font-mono text-sm tracking-widest uppercase text-zinc-500">
           <span>• REACT.JS &amp; NEXT.JS ARCHITECTURE</span>
-          <span>• ABU DHABI &amp; DUBAI UAE</span>
+          <span>• Dubai, UAE</span>
           <span>• 4+ YEARS PRODUCTION DELIVERY</span>
           <span>• PYTHON FASTAPI INTEGRATION</span>
           <span>• CORE WEB VITALS OPTIMIZATION</span>
           <span>• FIGMA-TO-CODE ACCURACY</span>
           <span>• REACT.JS &amp; NEXT.JS ARCHITECTURE</span>
-          <span>• ABU DHABI &amp; DUBAI UAE</span>
+          <span>• Dubai, UAE</span>
           <span>• 4+ YEARS PRODUCTION DELIVERY</span>
           <span>• PYTHON FASTAPI INTEGRATION</span>
           <span>• CORE WEB VITALS OPTIMIZATION</span>
@@ -933,10 +949,10 @@ export default function ModernPortfolio() {
         </div>
       </div>
 
-      {/* --- CONTACT & CONVERSATION SECTION --- */}
+      {/* --- CONTACT & CONVERSATION SECTION (Sandboxed with 'relative isolate') --- */}
       <section
         id="contact"
-        className="py-24 md:py-32 px-4 md:px-8 max-w-6xl mx-auto"
+        className="relative isolate py-24 md:py-32 px-4 md:px-8 max-w-6xl mx-auto"
       >
         <div className="relative rounded-3xl glass-panel border border-white/10 p-8 sm:p-14 overflow-hidden">
           <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-emerald-500/15 blur-3xl pointer-events-none" />
@@ -981,7 +997,7 @@ export default function ModernPortfolio() {
 
               <div className="grid grid-cols-2 gap-3">
                 <a
-                  href="https://www.linkedin.com/in/ovais-sharif/"
+                  href="https://www.linkedin.com/in/mohammad-ovais-sharif/"
                   target="_blank"
                   rel="noreferrer"
                   className="p-4 rounded-2xl glass-card-interactive border border-white/10 text-xs font-mono text-zinc-300 hover:text-white flex flex-col justify-between space-y-3"
@@ -1012,10 +1028,10 @@ export default function ModernPortfolio() {
       </section>
 
       {/* --- FOOTER --- */}
-      <footer className="border-t border-white/5 py-10 px-4 md:px-8 max-w-6xl mx-auto text-xs font-mono text-zinc-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="relative isolate border-t border-white/5 py-10 px-4 md:px-8 max-w-6xl mx-auto text-xs font-mono text-zinc-500 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           © {new Date().getFullYear()} Ovais Sharif · Designed &amp; built with
-          intention.
+          intention using AI Agents.
         </div>
         <div className="flex items-center gap-6">
           <a
@@ -1027,7 +1043,7 @@ export default function ModernPortfolio() {
             GitHub ↗
           </a>
           <a
-            href="https://www.linkedin.com/in/ovais-sharif/"
+            href="https://www.linkedin.com/in/mohammad-ovais-sharif/"
             target="_blank"
             rel="noreferrer"
             className="hover:text-zinc-300 transition-colors"
